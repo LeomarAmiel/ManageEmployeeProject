@@ -30,11 +30,9 @@ export const employeeCreate = ({firstName, lastName, phoneNumber, schedule }) =>
 export const employeeListFetch = () => {
 	const { currentUser } = firebase.auth();
 	return (dispatch) => {
-		gg = db.collection('users').doc(currentUser.uid).get()
-		.then(data => {
+		db.collection('users').doc(currentUser.uid).onSnapshot((data) => {
 			let { employees } = data.data();
-			dispatch({ type: 'EMP_FETCH_SUCCESS' })
-		})
-		.catch(error => console.error(error));
+			dispatch({ type: 'EMP_FETCH_SUCCESS', payload: employees });
+		});
 	}
 }
