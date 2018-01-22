@@ -1,12 +1,16 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, Picker } from 'react-native';
 import { connect } from 'react-redux';
-import { employeeUpdate } from '../actions';
+import { employeeUpdate, employeeCreate } from '../actions';
 import { CardSection, Input, Spinner, Button } from '../components/common';
 
 class EmployeeCreate extends Component {
+
+	createEmployee () {
+		this.props.employeeCreate(this.props.state);
+	}
+
 	render(){
-		console.log(this.props.state);
 		const { firstName, lastName, phoneNumber, schedule } = this.props.state;
 		return (
 			<View style={styles.wrapperStyle}>
@@ -58,7 +62,7 @@ class EmployeeCreate extends Component {
 					</Picker>
 				</CardSection>
 				<CardSection>
-					<Button>
+					<Button onPress={this.createEmployee.bind(this)}>
 						Create
 					</Button>
 				</CardSection>
@@ -94,4 +98,4 @@ const styles = StyleSheet.create({
 	}
 })
 
-export default connect(mapStateToProps, { employeeUpdate })(EmployeeCreate);
+export default connect(mapStateToProps, { employeeUpdate, employeeCreate })(EmployeeCreate);

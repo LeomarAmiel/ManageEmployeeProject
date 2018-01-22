@@ -4,7 +4,7 @@ import NavigationReducer from './NavigationReducer';
 import EmployeeCreationReducer from './EmployeeCreationReducer';
 
 export default combineReducers({
+	nav: NavigationReducer,
 	loginForm: LoginReducer,
 	employeeForm: EmployeeCreationReducer,
-	nav: NavigationReducer,
 })

@@ -1,6 +1,5 @@
 import firebase from 'firebase';
-import {navigateToManagerAction} from './NavigationActions';
-
+import {navigateToEmpListAction} from './NavigationActions';
 
 export const emailChange = (payload) => {
 	return {
@@ -46,9 +45,7 @@ const loginSuccess = (dispatch, user) => {
 		type: 'LOGIN_SUCCESS',
 		payload: user
 	});
-	dispatch(
-		navigateToManagerAction
-	)
+	dispatch(navigateToEmpListAction)
 
 }
 

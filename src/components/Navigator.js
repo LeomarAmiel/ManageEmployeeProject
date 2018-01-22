@@ -2,7 +2,7 @@ import { StackNavigator } from 'react-navigation';
 import { connect } from 'react-redux'
 import HomePage from '../pages/HomePage';
 import RegisterPage from '../pages/RegisterPage';
-import ManagerPage from '../pages/ManagerPage';
+import EmployeeList from '../pages/EmployeeListPage';
 import EmployeeCreatePage from '../pages/EmployeeCreatePage';
 
 const Navigator = StackNavigator({
@@ -26,8 +26,8 @@ const Navigator = StackNavigator({
       }
     }
   },
-  Manager: {
-    screen: ManagerPage,
+  EmployeeList: {
+    screen: EmployeeList,
     navigationOptions: {
       headerTitle: 'Employees',
       headerTintColor: 'white',
