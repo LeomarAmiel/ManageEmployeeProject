@@ -39,7 +39,6 @@ const Navigator = StackNavigator({
   EmployeeCreate: {
     screen: EmployeeCreatePage,
     navigationOptions: {
-      headerTitle: 'Create Employee',
       headerTintColor: 'white',
       headerStyle: {
         backgroundColor: 'black'

@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { Button, Text, View, FlatList, StyleSheet } from 'react-native';
-import { CardSection } from '../components/common/'
 import { connect } from 'react-redux';
-import { navigateToEmployeeCreateAction, employeeListFetch } from '../actions';
+import { CardSection } from '../components/common/'
+import EmployeeItem from '../components/EmployeeItem'
+import { navigateToEmployeeCreateAction, employeeListFetch, navigateToEmployeeEditAction } from '../actions';
 
 class ManagerPage extends Component {
 	static navigationOptions = ({navigation}) => {
@@ -22,16 +23,19 @@ class ManagerPage extends Component {
 		this.props.navigation.dispatch(navigateToEmployeeCreateAction);
 	}
 
+	navigateToEmployeeEdit = (index) => {
+		let params = Object.assign({}, this.props.empList[index], {headerTitle: 'Edit Employee'});
+		this.props.navigateToEmployeeEditAction(params);
+	}
+
 	render(){
 		return (
 			<View style={{flex: 1}}>
 				<FlatList 
 				data={this.props.empList} 
 				keyExtractor={(data, index) => index}
-				renderItem={({item}) => 
-					<CardSection style={styles.itemContainerStyle}>
-						<Text style={styles.itemStyle}>{item.firstName} {item.lastName}</Text>
-					</CardSection>}/>
+				renderItem={({item, index}) => <EmployeeItem onPress={() => this.navigateToEmployeeEdit(index)}>{item.firstName} {item.lastName}</EmployeeItem>}
+				/>
 			</View>
 		);
 	}
@@ -43,19 +47,9 @@ const mapStateToProps = ({empList}) => {
 	}
 }
 
-const styles = StyleSheet.create({
-	itemContainerStyle: {
-		borderBottomWidth: 2
-	},
-	itemStyle: {
-		marginLeft: 10,
-		marginRight: 10,
-		marginTop: 10,
-		fontSize: 18
-	}
-})
 
 export default connect(mapStateToProps, { 
 	navigateToEmployeeCreateAction, 
-	employeeListFetch 
+	employeeListFetch,
+	navigateToEmployeeEditAction
 })(ManagerPage);
