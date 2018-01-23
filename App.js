@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { View, StatusBar } from 'react-native';
 import { addNavigationHelpers } from 'react-navigation';
 
@@ -8,7 +8,6 @@ import { Provider, connect } from 'react-redux';
 import mainReducer from './src/reducers';
 
 import Navigator from './src/components/Navigator';
-
 
 const NavigatorWithHelpers = ({dispatch, nav}) => (
 	<Navigator navigation={addNavigationHelpers({
@@ -22,14 +21,17 @@ const mapStateToProps = (state) => ({
 
 const ConnectedNavigator = connect(mapStateToProps)(NavigatorWithHelpers);
 
-export default App = () => {
-  let store = createStore(mainReducer, applyMiddleware(thunk));
-  return (
-    <Provider store={store}>
-      <View style={{flex: 1}}>
-			  <StatusBar barStyle='light-content'/>
-        <ConnectedNavigator/>
-      </View>
-    </Provider>
-  )
+export default class App extends Component {
+
+  render(){
+    let store = createStore(mainReducer, applyMiddleware(thunk));
+    return (
+      <Provider store={store}>
+        <View style={{flex: 1}}>
+          <StatusBar barStyle='light-content'/>
+          <ConnectedNavigator/>
+        </View>
+      </Provider>
+    )
+  }
 }
