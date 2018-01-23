@@ -30,14 +30,12 @@ class LoginForm extends Component {
 			<View style={styles.containerLoginStyle}>
 				<CardSection>
 					<Input label='Email'
-						placeholder='john@example.com' 
 						onChangeText={(email) => this.props.emailChange(email)} 
 						value={email}
 					/>
 				</CardSection>
 				<CardSection>
 					<Input label='Password'
-						placeholder='password'
 						onChangeText={(password) => this.props.passwordChange(password)} 
 						value={password}
 						secureTextEntry={true}
