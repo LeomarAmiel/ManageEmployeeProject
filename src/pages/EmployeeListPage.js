@@ -24,7 +24,7 @@ class ManagerPage extends Component {
 	}
 
 	navigateToEmployeeEdit = (index) => {
-		let params = Object.assign({}, this.props.empList[index], {headerTitle: 'Edit Employee'});
+		let params = Object.assign({}, this.props.empList[index], {headerTitle: 'Edit Employee'}, {index});
 		this.props.navigateToEmployeeEditAction(params);
 	}
 

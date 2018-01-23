@@ -13,7 +13,7 @@ export const employeeCreate = ({firstName, lastName, phoneNumber, schedule }) =>
 	const { currentUser } = firebase.auth();
 
 	return (dispatch) => {
-		gg = db.collection('users').doc(currentUser.uid).get()
+		db.collection('users').doc(currentUser.uid).get()
 		.then(data => {
 			let { employees } = data.data();
 			employees.push({firstName, lastName, phoneNumber, schedule});
@@ -34,5 +34,29 @@ export const employeeListFetch = () => {
 			let { employees } = data.data();
 			dispatch({ type: 'EMP_FETCH_SUCCESS', payload: employees });
 		});
+	}
+}
+
+export const employeeSaveChanges = ({firstName, lastName, phoneNumber, schedule}, index) => {
+	const { currentUser } = firebase.auth();
+
+	return (dispatch) => {
+		db.collection('users').doc(currentUser.uid).get()
+		.then(data => {
+			let { employees } = data.data();
+			employees[index] = {
+				firstName,
+				lastName,
+				phoneNumber,
+				schedule
+			}
+			db.collection('users').doc(currentUser.uid).set({employees});
+			dispatch(NavigationActions.back());
+			dispatch({
+				type: 'EMP_CREATED'
+			})
+			
+		})
+		.catch(error => console.error(error));
 	}
 }

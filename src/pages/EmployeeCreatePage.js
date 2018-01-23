@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { View, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
-import { employeeCreate } from '../actions';
+import Communications from 'react-native-communications';
+import { employeeCreate, employeeSaveChanges } from '../actions';
 import { CardSection, Input, Spinner, Button } from '../components/common';
 import EmployeeForm from '../components/EmployeeForm';
 
@@ -19,21 +20,35 @@ class EmployeeCreate extends Component {
 	}
 
 	createEmployee () {
-		this.props.employeeCreate(this.props.state);
+		this.props.employeeCreate(this.props.employeeForm);
+	}
+
+	saveChanges () {
+		this.props.employeeSaveChanges(this.props.employeeForm, this.props.index);
 	}
 
 	renderButton() {
-		if(this.props.edit===true){
+		if(this.props.edit){
 			return(
-				<Button onPress={this.createEmployee.bind(this)}>
-					Save Changes
-				</Button>
+				<CardSection>
+					<Button onPress={() => Communications.text(
+						this.props.employeeForm.phoneNumber, 
+						`Your shift will start ${this.props.employeeForm.schedule}`
+					)}>
+					Text
+					</Button>
+					<Button onPress={this.saveChanges.bind(this)}>
+						Save Changes
+					</Button>
+				</CardSection>
 			)
 		}
 		return (
-			<Button onPress={this.createEmployee.bind(this)}>
-				Create
-			</Button>
+			<CardSection>
+				<Button onPress={this.createEmployee.bind(this)}>
+					Create
+				</Button>
+			</CardSection>
 		);
 	}
 
@@ -41,23 +56,23 @@ class EmployeeCreate extends Component {
 		return (
 			<View style={styles.wrapperStyle}>
 				<EmployeeForm/>
-				<CardSection>
-					{this.renderButton()}
-				</CardSection>
+				{this.renderButton()}
 			</View>
 		)
 	}
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = ({employeeForm, nav}) => {
+	const {routes} = nav;
 	if(typeof routes[routes.length-1].params==='object' && routes[routes.length-1].params!==null){
 		return {
-			state: state.employeeForm,
-			edit: true
+			employeeForm,
+			edit: true, 
+			index: routes[routes.length-1].params.index
 		}
 	}
 	return {
-		state: state.employeeForm
+		employeeForm
 	}
 }
 
@@ -68,4 +83,4 @@ const styles = StyleSheet.create({
 	}
 })
 
-export default connect(mapStateToProps, { employeeCreate })(EmployeeCreate);
+export default connect(mapStateToProps, { employeeCreate, employeeSaveChanges })(EmployeeCreate);
