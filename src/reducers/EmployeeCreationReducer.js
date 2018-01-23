@@ -14,6 +14,10 @@ export default EmpCreationReducer = (state = initialState, action) => {
 			);
 		case 'EMP_CREATED':
 			return initialState;
+		case 'EMP_UPDATED': 
+			return initialState;
+		case 'EMP_DELETED': 
+			return initialState;
 		default: 
 			return state;
 	}

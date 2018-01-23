@@ -2,11 +2,14 @@ import React, { Component } from 'react';
 import { View, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
 import Communications from 'react-native-communications';
-import { employeeCreate, employeeSaveChanges } from '../actions';
-import { CardSection, Input, Spinner, Button } from '../components/common';
+import { employeeCreate, employeeSaveChanges, employeeFire } from '../actions';
+import { CardSection, Input, Spinner, Button, Confirm } from '../components/common';
 import EmployeeForm from '../components/EmployeeForm';
 
 class EmployeeCreate extends Component {
+	state = {
+		onVisibleModal: false
+	}
 	static navigationOptions = ({navigation}) => {
 		if(navigation.state.params!==undefined){
 			const {headerTitle} = navigation.state.params;
@@ -27,19 +30,38 @@ class EmployeeCreate extends Component {
 		this.props.employeeSaveChanges(this.props.employeeForm, this.props.index);
 	}
 
+	employeeFire () {
+		this.props.employeeFire(this.props.index);
+	}
+
 	renderButton() {
 		if(this.props.edit){
 			return(
-				<CardSection>
-					<Button onPress={() => Communications.text(
-						this.props.employeeForm.phoneNumber, 
-						`Your shift will start ${this.props.employeeForm.schedule}`
-					)}>
-					Text
-					</Button>
-					<Button onPress={this.saveChanges.bind(this)}>
-						Save Changes
-					</Button>
+				<CardSection style={{flexDirection: 'column'}}>
+					<CardSection>
+						<Button onPress={() => Communications.text(
+							this.props.employeeForm.phoneNumber, 
+							`Your shift will start ${this.props.employeeForm.schedule}`
+						)}>
+							Text
+						</Button>
+						<Button onPress={this.saveChanges.bind(this)}>
+							Save Changes
+						</Button>
+					</CardSection>
+					<CardSection>
+						<Button onPress={() => this.setState({ onVisibleModal: !this.state.onVisibleModal })}>
+							Fire
+						</Button>
+					</CardSection>
+					<Confirm
+						visible={this.state.onVisibleModal}
+						onConfirm={() => {}}
+						onReject={() => this.setState({onVisibleModal: !this.state.onVisibleModal})}
+						onConfirm={this.employeeFire.bind(this)}
+					>
+					Are you sure you want to fire this employee?
+				</Confirm>
 				</CardSection>
 			)
 		}
@@ -83,4 +105,8 @@ const styles = StyleSheet.create({
 	}
 })
 
-export default connect(mapStateToProps, { employeeCreate, employeeSaveChanges })(EmployeeCreate);
+export default connect(mapStateToProps, { 
+	employeeCreate, 
+	employeeSaveChanges,
+	employeeFire
+})(EmployeeCreate);

@@ -18,10 +18,10 @@ export const employeeCreate = ({firstName, lastName, phoneNumber, schedule }) =>
 			let { employees } = data.data();
 			employees.push({firstName, lastName, phoneNumber, schedule});
 			db.collection('users').doc(currentUser.uid).set({employees});
-			dispatch(NavigationActions.back());
 			dispatch({
 				type: 'EMP_CREATED'
 			})
+			dispatch(NavigationActions.back());
 		})
 		.catch(error => console.error(error));
 	}
@@ -51,11 +51,29 @@ export const employeeSaveChanges = ({firstName, lastName, phoneNumber, schedule}
 				schedule
 			}
 			db.collection('users').doc(currentUser.uid).set({employees});
-			dispatch(NavigationActions.back());
 			dispatch({
-				type: 'EMP_CREATED'
+				type: 'EMP_UPDATED'
 			})
+			dispatch(NavigationActions.back());	
+		})
+		.catch(error => console.error(error));
+	}
+}
+
+export const employeeFire = (index) => {
+	const { currentUser } = firebase.auth();
+
+	return (dispatch) => {
+		db.collection('users').doc(currentUser.uid).get()
+		.then(data => {
+			console.log(index);
+			let { employees } = data.data();
 			
+			db.collection('users').doc(currentUser.uid).set({employees: employees.slice(0, index).concat(employees.slice(index+1, employees.length-1))});
+			dispatch({
+				type: 'EMP_DELETED'
+			})
+			dispatch(NavigationActions.back());
 		})
 		.catch(error => console.error(error));
 	}
