@@ -26,6 +26,6 @@
   },
   "jest": {
     "preset": "react-native",
-    "transformIgnorePatterns": ["node_modules/(?!react-native|native-base|react-navigation|react-native-fabric)"]
+    "transformIgnorePatterns": ["node_modules/(?!react-native|native-base|react-navigation|react-native-fabric|redux|react-redux|redux-thunk)"]
   }
 }
