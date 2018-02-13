@@ -504,12 +504,19 @@ babel-helpers@^6.24.1:
     babel-runtime "^6.22.0"
     babel-template "^6.24.1"
 
-babel-jest@22.0.6, babel-jest@^22.0.6:
+babel-jest@^22.0.6:
   version "22.0.6"
   resolved "https://registry.yarnpkg.com/babel-jest/-/babel-jest-22.0.6.tgz#807a2a5f5fad7789c57174a955cd14b11045299f"
   dependencies:
     babel-plugin-istanbul "^4.1.5"
     babel-preset-jest "^22.0.6"
+
+babel-jest@^22.2.2:
+  version "22.2.2"
+  resolved "https://registry.yarnpkg.com/babel-jest/-/babel-jest-22.2.2.tgz#eda38dca284e32cc5257f96a9b51351975de4e04"
+  dependencies:
+    babel-plugin-istanbul "^4.1.5"
+    babel-preset-jest "^22.2.0"
 
 babel-messages@^6.23.0:
   version "6.23.0"
@@ -540,6 +547,10 @@ babel-plugin-istanbul@^4.1.5:
 babel-plugin-jest-hoist@^22.0.6:
   version "22.0.6"
   resolved "https://registry.yarnpkg.com/babel-plugin-jest-hoist/-/babel-plugin-jest-hoist-22.0.6.tgz#551269ded350a15d6585da35d16d449df30d66c4"
+
+babel-plugin-jest-hoist@^22.2.0:
+  version "22.2.0"
+  resolved "https://registry.yarnpkg.com/babel-plugin-jest-hoist/-/babel-plugin-jest-hoist-22.2.0.tgz#bd34f39d652406669713b8c89e23ef25c890b993"
 
 babel-plugin-react-transform@^3.0.0:
   version "3.0.0"
@@ -595,13 +606,6 @@ babel-plugin-transform-class-properties@^6.18.0, babel-plugin-transform-class-pr
     babel-plugin-syntax-class-properties "^6.8.0"
     babel-runtime "^6.22.0"
     babel-template "^6.24.1"
-
-babel-plugin-transform-define@^1.3.0:
-  version "1.3.0"
-  resolved "https://registry.yarnpkg.com/babel-plugin-transform-define/-/babel-plugin-transform-define-1.3.0.tgz#94c5f9459c810c738cc7c50cbd44a31829d6f319"
-  dependencies:
-    lodash "4.17.4"
-    traverse "0.6.6"
 
 babel-plugin-transform-es2015-arrow-functions@^6.5.0, babel-plugin-transform-es2015-arrow-functions@^6.8.0:
   version "6.22.0"
@@ -860,6 +864,13 @@ babel-preset-jest@^22.0.6:
   resolved "https://registry.yarnpkg.com/babel-preset-jest/-/babel-preset-jest-22.0.6.tgz#d13202533db9495c98663044d9f51b273d3984c8"
   dependencies:
     babel-plugin-jest-hoist "^22.0.6"
+    babel-plugin-syntax-object-rest-spread "^6.13.0"
+
+babel-preset-jest@^22.2.0:
+  version "22.2.0"
+  resolved "https://registry.yarnpkg.com/babel-preset-jest/-/babel-preset-jest-22.2.0.tgz#f77b43f06ef4d8547214b2e206cc76a25c3ba0e2"
+  dependencies:
+    babel-plugin-jest-hoist "^22.2.0"
     babel-plugin-syntax-object-rest-spread "^6.13.0"
 
 babel-preset-react-native@4.0.0, babel-preset-react-native@^4.0.0:
@@ -2132,7 +2143,7 @@ hoek@4.x.x:
   version "4.2.0"
   resolved "https://registry.yarnpkg.com/hoek/-/hoek-4.2.0.tgz#72d9d0754f7fe25ca2d01ad8f8f9a9449a89526d"
 
-hoist-non-react-statics@^2.2.0, hoist-non-react-statics@^2.2.1:
+hoist-non-react-statics@^2.2.0, hoist-non-react-statics@^2.2.1, hoist-non-react-statics@^2.3.1:
   version "2.3.1"
   resolved "https://registry.yarnpkg.com/hoist-non-react-statics/-/hoist-non-react-statics-2.3.1.tgz#343db84c6018c650778898240135a1420ee22ce0"
 
@@ -2992,13 +3003,13 @@ lodash.templatesettings@^3.0.0:
     lodash._reinterpolate "^3.0.0"
     lodash.escape "^3.0.0"
 
-lodash@4.17.4, lodash@^4.13.1, lodash@^4.14.0, lodash@^4.16.6, lodash@^4.17.4, lodash@^4.2.0, lodash@^4.2.1, lodash@^4.3.0, lodash@^4.6.1:
-  version "4.17.4"
-  resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.4.tgz#78203a4d1c328ae1d86dca6460e369b57f4055ae"
-
 lodash@^3.5.0:
   version "3.10.1"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-3.10.1.tgz#5bf45e8e49ba4189e17d482789dfd15bd140b7b6"
+
+lodash@^4.13.1, lodash@^4.14.0, lodash@^4.16.6, lodash@^4.17.4, lodash@^4.2.0, lodash@^4.2.1, lodash@^4.3.0, lodash@^4.6.1:
+  version "4.17.4"
+  resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.4.tgz#78203a4d1c328ae1d86dca6460e369b57f4055ae"
 
 long@~3:
   version "3.2.0"
@@ -3756,6 +3767,12 @@ react-native-drawer-layout@1.3.2:
   dependencies:
     react-native-dismiss-keyboard "1.0.0"
 
+react-native-safe-area-view@^0.6.0:
+  version "0.6.0"
+  resolved "https://registry.yarnpkg.com/react-native-safe-area-view/-/react-native-safe-area-view-0.6.0.tgz#ce01eb27905a77780219537e0f53fe9c783a8b3d"
+  dependencies:
+    hoist-non-react-statics "^2.3.1"
+
 react-native-tab-view@^0.0.74:
   version "0.0.74"
   resolved "https://registry.yarnpkg.com/react-native-tab-view/-/react-native-tab-view-0.0.74.tgz#62c0c882d9232b461ce181d440d683b4f99d1bd8"
@@ -3822,15 +3839,15 @@ react-native@0.52.0:
     yargs "^9.0.0"
 
 react-navigation@^1.0.0-beta.26:
-  version "1.0.0-beta.26"
-  resolved "https://registry.yarnpkg.com/react-navigation/-/react-navigation-1.0.0-beta.26.tgz#186fcd1ec13828c7c133ca560b5d95a55e2b9f66"
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/react-navigation/-/react-navigation-1.0.3.tgz#1687ea67a72a382633b01e7afda88582ebc3b5f9"
   dependencies:
-    babel-plugin-transform-define "^1.3.0"
     clamp "^1.0.1"
     hoist-non-react-statics "^2.2.0"
     path-to-regexp "^1.7.0"
     prop-types "^15.5.10"
     react-native-drawer-layout-polyfill "^1.3.2"
+    react-native-safe-area-view "^0.6.0"
     react-native-tab-view "^0.0.74"
 
 react-proxy@^1.1.7:
@@ -4552,10 +4569,6 @@ tr46@^1.0.0:
   resolved "https://registry.yarnpkg.com/tr46/-/tr46-1.0.1.tgz#a8b13fd6bfd2489519674ccde55ba3693b706d09"
   dependencies:
     punycode "^2.1.0"
-
-traverse@0.6.6:
-  version "0.6.6"
-  resolved "https://registry.yarnpkg.com/traverse/-/traverse-0.6.6.tgz#cbdf560fd7b9af632502fed40f918c157ea97137"
 
 trim-right@^1.0.1:
   version "1.0.1"
