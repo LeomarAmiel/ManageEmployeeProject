@@ -1,4 +1,4 @@
-import { NavigationActions } from 'react-navigation'
+import { NavigationActions } from 'react-navigation';
 
 export const navigateToLoginAction =	NavigationActions.navigate({routeName: 'Home'});
 export const navigateToRegisterAction =	NavigationActions.navigate({routeName: 'Register'});
